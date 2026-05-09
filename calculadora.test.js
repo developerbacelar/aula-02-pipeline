@@ -23,7 +23,7 @@ describe('Calculadora Básica', () => {
 
   // Testes de Divisão
   test('deve dividir 10 / 2 e retornar 5', () => {
-    expect(dividir(10, 2)).toBe(7);
+    expect(dividir(10, 2)).toBe(5);
   });
 
   test('deve lançar um erro ao tentar dividir por zero', () => {
