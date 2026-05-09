@@ -4,10 +4,12 @@ describe('Calculadora Básica', () => {
   
   // Testes de Soma
   test('deve somar 2 + 3 e retornar 5', () => {
+    console.log(variavelQueNaoExiste);
     expect(somar(2, 3)).toBe(5);
   });
 
   test('deve somar números negativos (-1 + -1) e retornar -2', () => {
+    console.log(variavelQueNaoExiste);
     expect(somar(-1, -1)).toBe(-2);
   });
 
