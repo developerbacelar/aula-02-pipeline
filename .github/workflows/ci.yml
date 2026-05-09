@@ -15,10 +15,9 @@ jobs:
     # O sistema operacional da máquina virtual do GitHub
     runs-on: ubuntu-latest
 
-    # Podemos testar em várias versões do Node ao mesmo tempo!
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [22.x]
 
     # O passo a passo real do que o servidor vai fazer
     steps:
@@ -38,6 +37,14 @@ jobs:
     - name: Instalar dependências
       run: npm ci
 
-    # 4. O grande momento: Roda os testes!
+    # 4. Verificando qualidade do código!
+    - name: Verificar qualidade do código
+      run: npx eslint .
+
+    # 5. Roda os testes!
     - name: Executar o Jest
       run: npm test
+
+    # 6. Cobertura de testes!
+    - name: Cobertura de testes
+      run: npm test -- --coverage

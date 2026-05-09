@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/developerbacelar/aula-02-pipeline#readme",
   "devDependencies": {
+    "@eslint/css": "^1.2.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.2.0",
+    "@eslint/markdown": "^8.0.1",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
     "jest": "^30.4.2"
   }
 }
