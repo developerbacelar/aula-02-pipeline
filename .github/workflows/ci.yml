@@ -1,0 +1,43 @@
+# Nome da Action (vai aparecer na aba "Actions" do GitHub)
+name: Testes Automatizados (Jest)
+
+# Quando essa action deve ser executada?
+on:
+  # Roda toda vez que você der um 'git push' na branch main ou master
+  push:
+    branches: [ "main", "master" ]
+  # Roda toda vez que alguém abrir um Pull Request para a main
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  testar:
+    # O sistema operacional da máquina virtual do GitHub
+    runs-on: ubuntu-latest
+
+    # Podemos testar em várias versões do Node ao mesmo tempo!
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    # O passo a passo real do que o servidor vai fazer
+    steps:
+    # 1. Faz o download do seu código para a máquina do GitHub
+    - name: Baixar o código do repositório
+      uses: actions/checkout@v4
+
+    # 2. Instala e configura o Node.js na máquina
+    - name: Configurar o Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    # 3. Instala as dependências (Jest, etc)
+    # Obs: Usamos 'npm ci' em vez de 'npm install' pois é mais rápido e seguro em servidores
+    - name: Instalar dependências
+      run: npm ci
+
+    # 4. O grande momento: Roda os testes!
+    - name: Executar o Jest
+      run: npm test
